@@ -1,21 +1,12 @@
-/*
-    MERGE SORT
-
-    No  processo de ordenação, esse algoritmo "desmonta" o vetor original
-    contendo N elementos até obter N vetores de apenas um elemento cada um.
-    Em seguida, usando a técnica de mesclagem (merge), "remonta" o vetor,
-    dessa vez com os elementos já em ordem.
-
-    */
-
-    let comps = 0, divisoes = 0, juncoes = 0 
+let comps = 0, divisoes = 0, juncoes = 0 
 
     function mergeSort(vetor){
         
         function mesclar(vetEsq, vetDir) {
             let pEsq = 0, pDir = 0, vetRes = []
             while(pEsq < vetEsq.length && pDir < vetDir.length) {
-                if(vetEsq[pEsq] < vetDir[pDir]) {
+                //if(vetEsq[pEsq] < vetDir[pDir]) {
+                if(fnComp(vetDir))   
                     vetRes.push(vetEsq[pEsq])
                     pEsq++
                 }
@@ -71,9 +62,9 @@
 
     //console.log('Antes:', nomes)
     comps = 0, divisoes = 0, juncoes = 0
-    console.time('Ordenando nomes...')
-    let nomesOrd = mergeSort(nomes)
-    console.timeEnd('Ordenando nomes...')
+    console.time('Ordenando por nome de registro...')
+    let candidatoOrd = mergeSort(candidatos, (a,b) => a.NM_URNA_CANDIDATO > b.NM_URNA_CANDIDATO)
+    console.timeEnd('Ordenando por nome de registro...')
     let memoria = process.memoryUsage().heapUsed / 1024 / 1024
     console.log({comps, divisoes, juncoes, memoria})
     console.log('Depois:', nomesOrd)
